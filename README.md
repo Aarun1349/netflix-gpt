@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-
+# Netflix App Powered by Chat GPT styled by tailwind css
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

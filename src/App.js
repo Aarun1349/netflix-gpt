@@ -1,10 +1,8 @@
 import "./App.css";
-
+import Body from "./components/Body";
 function App() {
   return (
-    <div className="text-3xl font-bold text-red-800 capitalize">
-      <h1>Netflix GPT app</h1>
-    </div>
+    <Body/>
   );
 }
 

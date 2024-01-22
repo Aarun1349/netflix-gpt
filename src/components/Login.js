@@ -1,10 +1,14 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { validateForm } from "../utils/validate";
-
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 function Login() {
   const [signUp, setSignUp] = useState(false);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -18,20 +22,75 @@ function Login() {
       setResult(
         validateForm(
           email.current.value,
-          password.current.value,signUp,
-          name.current.value,
+          password.current.value,
+          signUp,
+          name.current.value
         )
       );
     } else {
-      setResult(validateForm(email.current.value, password.current.value,signUp));
+      setResult(
+        validateForm(email.current.value, password.current.value, signUp)
+      );
     }
-    // setResult(validateResult);/
+    if (result) return;
+
+    if (result === null) {
+      // create a new user
+      if (signUp) {
+        // create new user
+
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            if (user) {
+              email.current.value = "";
+              name.current.value = "";
+              password.current.value = "";
+            }
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+          });
+      } else {
+        // sign in
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            if (user) {
+              email.current.value = "";
+              password.current.value = "";
+            }
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+          });
+      }
+    }
   };
   return (
     <div>
       <Header />
       <div className="absolute min-h-max min-w-max">
         <img
+          className="bg-center fixed md:flex"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4a35-b58d-4ecf8fdc507c/410cd3dc-6fc2-4bbe-8dcb-16cb744ee011/SG-en-20240108-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="netflix_logo"
         />
@@ -63,7 +122,7 @@ function Login() {
         <input
           ref={password}
           className="p-4 my-4  bg-gray-600 rounded w-full"
-          type="pasword"
+          type="password"
           placeholder="Password"
         ></input>
         <button

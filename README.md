@@ -2,6 +2,21 @@
 # Netflix App Powered by Chat GPT styled by tailwind css
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#Netflix GPT
+-Create React App
+-Configured tailwind
+-Header
+-Routing of App
+-Login Form
+-Sign up Form
+-Form Validation
+-useRef Hook
+-Firebase Setup
+-Deploying our app to production https://netflix-gpt-demo.web.app/
+-Create Signup User Account
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

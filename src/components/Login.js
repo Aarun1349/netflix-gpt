@@ -59,6 +59,7 @@ function Login() {
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
+            setResult(errorMessage)
           });
       } else {
         // sign in
@@ -81,6 +82,7 @@ function Login() {
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
+            setResult(errorMessage)
           });
       }
     }

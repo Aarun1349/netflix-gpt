@@ -1,12 +1,18 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { validateForm } from "../utils/validate";
+import { addUser } from "../utils/userSlice";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [signUp, setSignUp] = useState(false);
   const [result, setResult] = useState(null);
   const email = useRef(null);
@@ -46,12 +52,29 @@ function Login() {
         )
           .then((userCredential) => {
             // Signed up
+            console.log(userCredential.user.UserImpl)
             const user = userCredential.user;
+            updateProfile( user, {
+              displayName: name.current.value,
+              photoURL: "https://example.com/jane-q-user/profile.jpg",
+            }).then(() => {
+              const { uid, email, displayName ,photoURL} = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            });
             if (user) {
               email.current.value = "";
               name.current.value = "";
               password.current.value = "";
+              navigate("/browse");
             }
+
             console.log(user);
           })
           .catch((error) => {
@@ -59,7 +82,7 @@ function Login() {
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
-            setResult(errorMessage)
+            setResult(errorMessage);
           });
       } else {
         // sign in
@@ -74,7 +97,9 @@ function Login() {
             if (user) {
               email.current.value = "";
               password.current.value = "";
+              navigate("/browse");
             }
+
             console.log(user);
           })
           .catch((error) => {
@@ -82,7 +107,7 @@ function Login() {
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
-            setResult(errorMessage)
+            setResult(errorMessage);
           });
       }
     }

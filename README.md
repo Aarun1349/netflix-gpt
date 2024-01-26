@@ -14,7 +14,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -Firebase Setup
 -Deploying our app to production https://netflix-gpt-demo.web.app/
 -Create Signup User Account
-
+-implement Signin user API
+-create redux store with user slice
+-Implemented signout
 
 
 ## Available Scripts

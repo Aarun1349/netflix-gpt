@@ -10,6 +10,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { USER_AVATAR } from "../constants/Constants";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,13 +53,12 @@ function Login() {
         )
           .then((userCredential) => {
             // Signed up
-            console.log(userCredential.user.UserImpl)
             const user = userCredential.user;
-            updateProfile( user, {
+            updateProfile(user, {
               displayName: name.current.value,
-              photoURL: "https://example.com/jane-q-user/profile.jpg",
+              photoURL: USER_AVATAR,
             }).then(() => {
-              const { uid, email, displayName ,photoURL} = auth.currentUser;
+              const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
@@ -74,14 +74,9 @@ function Login() {
               password.current.value = "";
               navigate("/browse");
             }
-
-            console.log(user);
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
             setResult(errorMessage);
           });
       } else {
@@ -99,14 +94,9 @@ function Login() {
               password.current.value = "";
               navigate("/browse");
             }
-
-            console.log(user);
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
             setResult(errorMessage);
           });
       }
@@ -117,7 +107,7 @@ function Login() {
       <Header />
       <div className="absolute min-h-max min-w-max">
         <img
-          className="bg-center fixed md:flex"
+          className="bg-center fixed h-full md:flex w-full"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4a35-b58d-4ecf8fdc507c/410cd3dc-6fc2-4bbe-8dcb-16cb744ee011/SG-en-20240108-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="netflix_logo"
         />

@@ -33,16 +33,11 @@ const Header = () => {
       })
       .catch((error) => {
         console.log(error);
-        
       });
   };
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img
-        className="w-44 "
-        src= {LOGO_URL}
-        alt="logo"
-      ></img>
+      <img className="w-44 " src={LOGO_URL} alt="logo"></img>
       {user && (
         <div className="flex justify-around">
           <img
@@ -50,7 +45,9 @@ const Header = () => {
             src={user.photoURL}
             alt="user-icon"
           ></img>
-
+          <button className="ml-5 font-bold text-red-900 hover:text-white">
+            AI Search
+          </button>
           <button
             className="ml-5 font-bold text-red-900 hover:text-white"
             onClick={() => handleSignOut()}

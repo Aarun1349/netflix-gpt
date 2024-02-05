@@ -1,18 +1,23 @@
-import React, { useSelector } from "react";
+import React from "react";
 import Header from "./Header";
 import useNowPlaying from "../custom hooks/useNowPlaying";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../custom hooks/usePopularMovies";
+import useRatedTV from "../custom hooks/useRatedTV";
+import GPTSearch from "./GPTSearch";
 
 const Browse = () => {
   useNowPlaying();
-// const nowPlayingMoviesList = useSelector(store=>store.movies.nowPlayingMovies)
-  // console.log("nowPlayingMoviesList", nowPlayingMoviesList);
+  usePopularMovies();
+  useRatedTV();
+
   return (
     <div>
       <Header />
-      <MainContainer/>
-      <SecondaryContainer/>
+      {/* <GPTSearch/> */}
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

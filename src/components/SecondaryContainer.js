@@ -9,9 +9,7 @@ const SecondaryContainer = () => {
   const popularMovies = useSelector((state) => state.movies.popularMovies);
   const ratedTV = useSelector((state) => state.movies.ratedTV);
 
-  console.log("Now Playing", nowPlayingMovies);
-  console.log("Popular Movies", popularMovies);
-  console.log("Rated TV", ratedTV);
+
 
   return (
     nowPlayingMovies &&

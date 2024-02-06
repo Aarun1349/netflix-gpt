@@ -10,7 +10,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { USER_AVATAR } from "../constants/Constants";
+import { BACKGROUND_URL, USER_AVATAR } from "../constants/Constants";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -108,7 +108,7 @@ function Login() {
       <div className="absolute min-h-max min-w-max">
         <img
           className="bg-center fixed h-full md:flex w-full"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/594f8025-139a-4a35-b58d-4ecf8fdc507c/410cd3dc-6fc2-4bbe-8dcb-16cb744ee011/SG-en-20240108-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BACKGROUND_URL}
           alt="netflix_logo"
         />
       </div>

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { LOGO_URL } from "../constants/Constants";
 import { addUser, removeUser } from "../utils/userSlice";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { toggleGPTSearchView } from "../utils/gptSlice";
 import { languages } from "../constants/Constants";
 import { changeLanguage } from "../utils/configSlice";
@@ -82,8 +82,9 @@ const Header = () => {
             className="px-4 my-2 m-4 rounded font-bold flex justify-between items-center bg-indigo-600 text-white"
             onClick={() => handleGptSearch()}
           >
-            AI Search
-            <AiOutlineSearch className="text-3xl pl-2 font-semibold" />
+            {/* {showGptSearch?"Home":"AI Search"} */}
+            {showGptSearch ? "Home" : "AI Search"}
+            {/* {showGptSearch?<AiFillHome className="text-3xl pl-2 font-semibold/>:<AiOutlineSearch className="text-3xl pl-2 font-semibold" />} */}
           </button>
           <button
             className="ml-5 mr-2 font-bold text-red-900 hover:text-white"

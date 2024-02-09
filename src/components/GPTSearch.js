@@ -1,7 +1,7 @@
 import React from 'react'
 import GptSearchBar from './GptSearchBar'
 import GptMovieSuggestions from './GptMovieSuggestions'
-import { BACKGROUND_URL, LOGO_URL } from '../constants/Constants'
+import { BACKGROUND_URL } from '../constants/Constants'
 
 const GPTSearch = () => {
   return (
